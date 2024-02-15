@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ASSIGNMENT_1</title>
+    <link href="Style/bootstrap-5.3.2-dist/css/bootstrap.min.css" rel="stylesheet" >
+    <link href="Style/project1.css" rel="stylesheet">
+  </head>
+  <body>
+        <nav class="navbar ">
+          <span class="navbar-brand  h1" style="background-color: dodgerblue; color: white;height: 80%; width: 100%;padding-top: 5px;padding-bottom: 5px; text-align: center;font-family: Verdana;">Student Enrollment Form</span>
+        </nav>
+
+        <!-- <div aria-live="polite" aria-atomic="true" style="position: absolute;top: 0; right: 0;z-index:100; min-height: 200px;"> -->
+            <div class="toast myToast" id="saved-toast" style="position: absolute; top: 0; right: 0;z-index:100">
+              <div class="toast-header">
+                <!-- <img src="..." class="rounded mr-2" alt="..."> -->
+                <strong class="mr-auto">Notification</strong>
+                <!-- <small>11 mins ago</small> -->
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="toast-body" data-delay="1000">
+                 Data  saved successfully!
+              </div>
+            </div>
+
+            <div class="toast myToast" id="delete-toast" style="position: absolute; top: 0; right: 0;z-index:100">
+                <div class="toast-header">
+                  <!-- <img src="..." class="rounded mr-2" alt="..."> -->
+                  <strong class="mr-auto">Notification</strong>
+                  <!-- <small>11 mins ago</small> -->
+                  <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="toast-body" data-delay="1000">
+                   Data  deleted successfully!
+                </div>
+              </div>
+          <!-- </div> -->
+          <div class="container">
+      <div class="row">
+          <div class="col-6" style="border-right: 10px solid lightgreen;">
+              <form class="my-form" autocomplete="off" form-id="{{dataId}}" >
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+                              <label for="name">Name</label>
+                        </div>
+                        <div class="col-6">
+                              <input type="text" id="name" name="name" autocomplete="off">
+                        </div>
+                      </div>
+                  </div>
+                    <div class="form-group">
+                          <div class="row">
+                              <div class="col-6">
+                                  <label for="email">Email</label>
+                              </div>
+                              <div class="col-6">
+                                  <input type="text" id="email" name="email" autocomplete="off">
+                              </div>
+                          </div>
+                    </div>
+                  <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <label for="website">Website</label>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" id="website" name="website"  autocomplete="off" >
+                            </div>
+                        </div>
+                  </div>
+                      <div class="form-group">
+                          <div class="row">
+                              <div class="col-6">
+                                  <label for="image">Image Link</label>
+                              </div>
+                              <div class="col-6">
+                                <input type="text" name="image" id="img"  autocomplete="off">
+                              </div>
+                          </div>
+                      </div>
+                          <div class="form-group">
+                              <div class="row">
+                                <div class="col-6">
+                                      <label for="gender">Gender</label>
+                                </div>
+                              <div class="col-6">
+                                  <div class="row">
+                                      <div class="col-6">
+                                          <input type="radio" id="male" name="gender" value="male" >
+                                          <label for="male">Male</label>
+                                      </div>
+                                      <div class="col-6">
+                                          <input type="radio" id="female" name="gender" value="female"  >
+                                          <label for="female">Female</label>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="row">
+                                    <div class="col-6">
+                                          Skills
+                                    </div>
+                                    <div class="col-6">
+                                      <div class="row">
+                                          <div class="col-4"> 
+                                              <input type="checkbox" id="java" value="java" name="skills">
+                                              <label for="java">Java</label>
+                                           </div>
+                                          <div class="col-4">
+                                                <input type="checkbox" id="html"  value="html" name="skills">
+                                                <label for="html">Html</label>
+                                          </div>
+                                          <div class="col-4"> 
+                                              <input type="checkbox" id="css"  value="css" name="skills">
+                                              <label for="css">CSS</label><br><br>
+                                          </div> 
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" >
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button type="reset" class="btn btn-danger btn-lg customBtn"> Clear</button>  
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="button" onclick="
+                                        validateData();
+                                        addDetail();"
+                                        class="btn btn-primary btn-lg customBtn js-add-button">Enroll Student</button>
+                                    </div>
+                                </div>
+                              </div>
+                </form>
+            </div>
+                        
+  
+       
+                
+      <div class="col-6 " >
+          <table class="table table-bordered caption-top  customTable" id="myTable">
+              <caption style="text-align: center; font-size: medium;  background-color:cadetblue; color: white;font-family: Verdana;">Enrolled Students</caption>
+                  <thead >
+                    <tr>
+                        <th scope="col" >Description</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Actions</th>
+                        
+                    </tr>
+                </thead>
+                    
+                        <tbody>
+                            
+                        </tbody>
+                    
+            </table>
+      </div>
+    </div>
+  </div>
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end">
+      <li class="page-item disabled">
+        <a class="page-link" href="#" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+   
+
+  <template id="table-template">
+    <tr data-id="{{userId}}">
+        <td>
+        {{name}}<br>
+        {{email}}<br>
+        <a href="{{website}}" target="_blank">{{website}}</a><br> 
+        {{gender}}<br>
+        {{skills}} 
+        </td>
+        <td>
+            <img src="{{image}}" height=200px width=300px onerror="defaultImage(this)" >
+        </td>
+        <td>
+            <button type="button" class="btn btn-primary customBtn1" onclick="editRow(this)">Edit</button><br><br>
+            <button type="button" class="btn btn-danger customBtn1 js-delete-row-button" onclick="deleteRow(this)" >Delete</button>
+        </td>
+    </tr>
+</template>
+<template id="table-template-update">
+      <td>
+      {{name}}<br>
+      {{email}}<br>
+      <a href="{{website}}" target="_blank">{{website}}</a><br> 
+      {{gender}}<br>
+      {{skills}} 
+      </td>
+      <td>
+          <img src="{{image}}" height=200px width=300px onerror="defaultImage(this)" >
+      </td>
+      <td>
+          <button type="button" class="btn btn-primary customBtn1" onclick="editRow(this)">Edit</button><br><br>
+          <button type="button" class="btn btn-danger customBtn1 js-delete-row-button" onclick="deleteRow(this)" >Delete</button>
+      </td> 
+</template>
+<template id="toast-template">
+    {{alert}}
+</template>
+  <script src="Style/bootstrap-5.3.2-dist/js/bootstrap.bundle.min.js" ></script>
+  <script src="Scripts/newProject1.js"></script>
+  
+  </body>
+</html>
